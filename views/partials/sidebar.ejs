@@ -1,0 +1,22 @@
+   <nav>
+     <div class="nav_title">
+       <h3>AP-moji</h3>
+     </div>
+      <ul>
+        <li <% if (page_name === 'index') { %>class="active" <% } %>><a href="/">Home</a></li>
+        <li <% if (page_name === 'api-doc') { %>class="active" <% } %>><a href="/api-doc">API</a></li>
+        <li <% if (page_name === 'documentation') { %>class="active" <% } %>><a href="/doc">documentation</a></li>
+        <li <% if (page_name === 'demos') { %>class="active" <% } %>><a href="/demos">demos</a></li>
+        <li <% if (page_name === 'credits') { %>class="active" <% } %>><a href="/credits">credits</a></li>
+        <li><a href="http://github.com">github</a></li>
+      </ul>
+    
+   
+      <div id="api-module">
+        <div class="api-module"></div>
+      </div>
+      <div class="credits">
+        Version 0.0.1 <br>
+        nodejs - ejs - express & love
+      </div>
+    </nav>

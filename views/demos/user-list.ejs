@@ -1,0 +1,106 @@
+<% include ../partials/head %>
+<% include ../partials/sidebar %>
+<style>
+header {
+  float: left;
+  width: 100%;
+  margin: 0;
+}
+header h3 {
+line-height: 92px;
+}
+  .demo ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 400px;
+    width: 400px;
+    margin: 8px auto;
+    float: left;
+    position: relative;
+    left: calc(50% - 200px);
+  }
+
+  .demo ul li {
+    display: block;
+    width: 100%;
+    padding: 0 .5em;
+    border: 1px solid #C0C5CE;
+    margin: 2px 0 0 ;
+    box-shadow: inset 2.4em 0 0 #23282F, inset 2.45em 0 0 #C0C5CE;
+    max-height: 40px;
+    line-height: 40px;
+    position: relative;
+    cursor: pointer;
+    
+  }
+
+  .demo ul li:hover {
+    background: #C0C5CE;
+    color: #23282F;
+    border-color: #23282F;
+    box-shadow: inset 2.4em 0 0 #C0C5CE , inset 2.45em 0 0 #23282F ;
+  }
+
+  .demo ul li:hover:after {
+    color: #C0C5CE;
+    text-shadow: 2px  0 0 #23282F;
+  }
+
+  .demo ul li:after {
+    content: '▶';
+    display: block;
+    float: right;
+    line-height: 40px;
+    color: #23282F;
+    text-shadow: 2px  0 0 #C0C5CE;
+    position: absolute;
+    right: 8px;
+    top: 0;
+    
+  }
+
+  .avatar {
+    font-size: 1.5em;
+  }
+  .name {
+    display: inline-block;
+    margin-left: 8px;
+    line-height: 0px;
+  }
+</style>
+<div class="container demo">
+  <header>
+    <h3>Users list</h3>
+  </header>
+
+  <ul class="user-list">
+  </ul>
+</div>
+
+<script>
+
+var list = document.querySelector('.user-list');
+  var getJSON = function(url) {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+        resolve(xhr.response);
+      } else {
+        reject(status);
+      }
+    };
+    xhr.send();
+  });
+};
+
+getJSON('http://localhost:3000/api').then(function(data) {
+      for(var i in data) { 
+        list.innerHTML += '<li><span class="avatar">'+data[i].face+'</span> <span class="name">'+data[i].name+'</span></li>'
+      }
+});
+</script>

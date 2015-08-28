@@ -1,0 +1,184 @@
+<% include ../partials/head %>
+<% include ../partials/sidebar %>
+<style>
+header {
+  float: left;
+  width: 100%;
+  margin: 0;
+}
+header h3 {
+line-height: 92px;
+}
+  .demo ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+    margin: 8px auto;
+    float: left;
+    position: relative;
+  }
+
+  .demo ul li {
+    display: block;
+    width: 33%;
+    padding: 1em 1em;
+    margin: 2px 0 0 ;
+    max-height: 40px;
+    line-height: 40px;
+    position: relative;
+    cursor: pointer;
+    float: left;
+    
+    
+  }
+
+@media all and (max-width: 780px) {
+  .demo ul li {
+    width: 100%;
+    max-height: inherit;
+    height: auto;
+  }
+}
+footer {
+  width: 100%;
+  float: left;
+  clear: both;
+  display: block;
+}
+
+
+  .avatar {
+    display: block;
+    font-size: 1.5em;
+    float: left;
+  }
+  .name {
+    display:block;
+    margin-left: 8px;
+    float: left;
+  }
+  .testimonial {
+  margin: 0;
+  background: #B7EDFF;
+  padding: 10px 20px;
+  position: relative;
+  font-family: Georgia, serif;
+  color: #fff;
+  border-radius: 1px;
+  font-style: italic;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.15);
+  border-left: 4px solid #FFC336;
+  
+  }
+
+.testimonial:after {
+  content: "\201C";
+  position: absolute;
+  font-size: 80px;
+  line-height: 1;
+  color: #ccc;
+  font-style: normal;
+}
+
+.testimonial:before {
+  top: 0;
+  left: 10px;
+}
+
+.testimonial:after {
+  content: "\201D";
+  right: 10px;
+  bottom: -0.5em;
+}
+
+/*.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid rgba(255,255,255,0.3);
+  margin: 0 0 0 25px;
+}*/
+
+.testimonial-author {
+  margin: 0 0 0 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #999;
+  text-align: left;
+}
+
+.testimonial-author span {
+  font-size: 12px;
+  color: #666;
+}
+
+</style>
+<div class="container demo">
+  <header>
+    <h3>Testimonials</h3>
+  </header>
+
+  <ul class="testimonials">
+  </ul>
+</div>
+
+<script>
+
+var list = document.querySelector('.testimonials');
+  var getJSON = function(url) {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+        resolve(xhr.response);
+      } else {
+        reject(status);
+      }
+    };
+    xhr.send();
+  });
+};
+
+r1 = Math.floor(Math.random() * 84) + 0;
+r2 = Math.floor(Math.random() * 84) + 0;
+r3 = Math.floor(Math.random() * 84) + 0;
+
+t1 = Math.floor(Math.random() * 17) + 0;
+t2 = Math.floor(Math.random() * 17) + 0;
+t3 = Math.floor(Math.random() * 17) + 0;
+
+var testimonials = [
+'"I will refer everyone I know. ap-moji has got everything I need. I would gladly pay over $600 for ap-moji. ap-moji has got everything I need."'
+, '"I wish I would have thought of it first. Thank you for making it painless, pleasant and most of all hassle free!"'
+, '"Thank you for making it painless, pleasant and most of all hassle free! ap-moji was the best investment I ever made. ap-moji is the real deal! ap-moji has completely surpassed our expectations."'
+, '"I would like to personally thank you for your outstanding product. It\'s incredible. Absolutely wonderful! We have no regrets!"'
+, '"I am completely blown away."'
+, '"It\'s just amazing. I could probably go into sales for you. ap-moji is both attractive and highly adaptable. Not able to tell you how happy I am with ap-moji."'
+, '"I am completely blown away. Thank You! Thanks guys, keep up the good work! "'
+, '"ap-moji has completely surpassed our expectations. We were treated like royalty."'
+, '"ap-moji is awesome! Thanks guys, keep up the good work! The best on the net!"'
+, '"Just what I was looking for. It really saves me time and effort. ap-moji is exactly what our business has been lacking. Needless to say we are extremely satisfied with the results. I am really satisfied with my ap-moji."'
+, '"We\'ve used ap-moji for the last five years. Just what I was looking for. Definitely worth the investment. ap-moji is both attractive and highly adaptable."'
+, '"Man, this thing is getting better and better as I learn more about it. I can\'t say enough about ap-moji."'
+, '"I am completely blown away. We\'ve used ap-moji for the last five years. I made back the purchase price in just 48 hours!"'
+, '"ap-moji is great."'
+, '"ap-moji has got everything I need. I have gotten at least 50 times the value from ap-moji. I love your system. It\'s really wonderful."'
+, '"I love ap-moji. ap-moji is exactly what our business has been lacking. I use ap-moji often. ap-moji is both attractive and highly adaptable."'
+, '"I will recommend you to my colleagues. The service was excellent."'
+, '"Just what I was looking for. I am really satisfied with my ap-moji. ap-moji is the next killer app. Thanks guys, keep up the good work!"'
+
+]
+getJSON('http://localhost:3000/api').then(function(data) {
+        
+        list.innerHTML += '<li><blockquote class="testimonial"> <p>'+testimonials[t1]+'</p> </blockquote> <div class="arrow-down"></div> <p class="testimonial-author">'+data[r1].face+'- '+data[r1].name+' | <span>'+ data[r1].job_title +'</span></p></li>'
+        list.innerHTML += '<li><blockquote class="testimonial"> <p>'+testimonials[t2]+'</p> </blockquote> <div class="arrow-down"></div> <p class="testimonial-author">'+data[r2].face+'- '+data[r2].name+' | <span>'+ data[r2].job_title +'</span></p></li>'
+        list.innerHTML += '<li><blockquote class="testimonial"> <p>'+testimonials[t3]+'</p> </blockquote> <div class="arrow-down"></div> <p class="testimonial-author">'+data[r3].face+'- '+data[r3].name+' | <span>'+ data[r3].job_title +'</span></p></li>'
+});
+</script>
+

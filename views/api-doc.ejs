@@ -1,0 +1,107 @@
+<% include partials/head %>
+    
+    <% include partials/sidebar %>
+
+    
+  <div class="container">
+      <header class="header hero-header">
+        <h1>APm<e>😄</e>ji</h1>
+        <h3>API Endpoints</h3>
+      </header>
+     <div class="panel panel-api first">
+      <h3>Return the whole api</h3>
+    <div class="code-demo"><pre><code>api/
+    <span class="tag">{
+      1: {
+        id: 1,
+        name: "John Doe",
+        face: "😁"
+      },
+      2: {
+        id: 2,
+        name: "Hector Market",
+        face: "😂"
+      },
+      3: {
+        id: 3,
+        name: "Silvana Banana",
+        face: "😃"
+      },
+      4: {
+        id: 4,
+        name: "Seth Mc",
+        face: "😎"
+      }, 
+      {..79 more results..}
+    }</span></code></pre>      
+    </div>
+    </div>
+
+   <div class="panel panel-api">
+      <h3>Return a specified user</h3>
+    <div class="code-demo"><pre><code>api/1
+api&user=1    
+    <span class="tag">{
+      id: 1,
+      name: "John Doe",
+      face: "😁"
+    }
+   </span>
+    </code></pre>      
+    </div>
+   </div>
+
+   <div class="panel panel-api">
+      <h3>Return a specified user face</h3>
+    <div class="code-demo"><pre><code>api/1/face
+    <span class="tag">"😁"</span>
+    </code></pre>      
+    </div>
+   </div>
+
+     <div class="panel panel-api">
+        <h3>Return a specified user name</h3>
+      <div class="code-demo"><pre><code>api/1/name
+      <span class="tag">"John Doe"</span>
+      </code></pre>      
+      </div>
+     </div>
+
+    <div class="panel panel-api">
+        <h3>Return a specified user Job title</h3>
+      <div class="code-demo"><pre><code>api/1/job
+      <span class="tag">"Professional JavaScript Giant"</span>
+      </code></pre>      
+      </div>
+     </div>
+
+     <div class="panel panel-api">
+       <h3>Return profile as PNG ( on canvas )</h3>
+       <div class="code-demo"><pre><code>api/1/png
+      </code></pre>
+      <iframe src="http://localhost:3000/api/1/png" style="overflow:hidden" frameborder="0"></iframe>
+     </div>
+
+     <div class="panel panel-api">
+       <h3>Return user face as PNG ( on canvas )</h3>
+       <div class="code-demo"><pre><code>api/1/face/png
+      </code></pre>
+      <iframe src="http://localhost:3000/api/1/face/png" style="overflow:hidden" frameborder="0"></iframe>
+     </div>
+
+     <div class="panel panel-api">
+       <h3>Return emoji resized as PNG ( on canvas )</h3>
+       <div class="code-demo"><pre><code>api/1/face/100
+      </code></pre>
+      <iframe src="http://localhost:3000/api/1/face/png/100" style="overflow:hidden" frameborder="0"></iframe>
+     </div>
+
+     <div class="panel panel-api">
+       <h3>Get emoji resized as a png & resize the canvas </h3>
+       <div class="code-demo"><pre><code>api/1/face/100/100
+      </code></pre>
+      <iframe src="http://localhost:3000/api/1/face/png/100/150" style="overflow:hidden" frameborder="0"></iframe>
+     </div>
+  </div>
+
+<% include partials/footer %>

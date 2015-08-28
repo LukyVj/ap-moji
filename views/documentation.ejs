@@ -1,0 +1,65 @@
+<% include partials/head %>
+    
+    <% include partials/sidebar %>
+
+    
+    <div class="container">
+      <header class="header hero-header">
+        <h1>APm<e>😄</e>ji</h1>
+        <h3>Documentation</h3>
+      </header>
+
+      <div class="panel">
+        <h3>Get JSON Response</h3>
+        <div class="bloc-text"><p>There is several ways to make API calls, from curl to ajax, here is a quick introduction of these techniques</p></div>
+
+        <h3>Curl</h3>
+
+        <section class="curl-commands">
+          <pre data-prefix="$" data-api-command="Returns the api"><code>curl <span class="host"></span>/api</code></pre>
+          <pre data-prefix="$" data-api-command="Returns an user"><code>curl <span class="host"></span>/api/1</code></pre>
+          <pre data-prefix="$" data-api-command="Returns a user name"><code>curl <span class="host"></span>/api/1/name</code></pre>
+          <pre data-prefix="$" data-api-command="Returns a user face"><code>curl <span class="host"></span>/api/1/face</code></pre>
+          <pre data-prefix="$" data-api-command="Returns an user as an image"><code>curl <span class="host"></span>/api/1/png</code></pre>
+          <pre data-prefix="$" data-api-command="Returns an user face as an image"><code>curl <span class="host"></span>/api/1/face/png</code></pre>
+          <pre data-prefix="$" data-api-command="Returns an user face as an image, resized"><code>curl <span class="host"></span>/api/1/face/png/100</code></pre>
+          <pre  data-api-command="Returns an user face as an image,resized, & canvas resized"><code>curl <span class="host"></span>/api/1/face/png/100/100</code></pre>
+        </section>
+
+         <h3>Ajax - XMLHttpRequest </h3>
+         <section class="curl-commands">
+        <pre><code>var getJSON = function(url) {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+        resolve(xhr.response);
+      } else {
+        reject(status);
+      }
+    };
+    xhr.send();
+  });
+};
+
+getJSON('<span class="tag">http://localhost:3000/api/1</span>').then(function(data) {
+  console.log(data)
+});</code></pre>
+</section>
+
+ <h3>Ajax - jQuery </h3>
+         <section class="curl-commands">
+        <pre><code>$.ajax({
+  url: "<span class="tag">http://localhost:3000/api/1</span>",
+}).done(function(data) {
+  console.log(data)
+});</code></pre>
+         
+        </section>
+      </div>
+    </div>
+
+<% include partials/footer %>

@@ -1,0 +1,26 @@
+<% include partials/canvas-core %>
+
+<script>
+var idi = document.getElementById('mjid').innerHTML;
+function canvasFun() {
+  getJSON(jsonPath).then(function(data) {
+    var nbPerson = data[idi];
+
+  var canvas = document.getElementById('c1');
+  if (canvas.getContext)
+  {    
+    var ctx = canvas.getContext('2d'); 
+    ctx.font = "20pt Calibri,Geneva,Arial";
+    ctx.strokeStyle = "rgb(0,0,0)";
+    ctx.fillStyle = "rgb(0,20,180)";
+    ctx.fillText(nbPerson.face, 20, 25);
+    var img = canvas.toDataURL("image/png");
+    document.getElementById('mji').src = img;
+  }  
+});
+}
+
+window.onload=canvasFun;
+</script>
+
+<img src id="mji" alt="">

@@ -1,0 +1,61 @@
+<% include partials/canvas-core %>
+<% if (!canvasSize) { %>
+<script>
+var idi = document.getElementById('mjid').innerHTML;
+var size = document.getElementById('mjiSize').innerHTML;
+function canvasFun() {
+  getJSON(jsonPath).then(function(data) {
+    var nbPerson = data[idi];
+
+  var canvas = document.getElementById('c1');
+  if (canvas.getContext)
+  {    
+    var ctx = canvas.getContext('2d'); 
+    ctx.font = size+"pt Calibri,Geneva,Arial";
+    ctx.strokeStyle = "rgb(0,0,0)";
+    ctx.fillStyle = "rgb(0,20,180)";
+    ctx.textAlign = 'center'; 
+    ctx.textBaseline = 'middle'; 
+
+    ctx.fillText(nbPerson.face, 100, 100);
+    var img = canvas.toDataURL("image/png");
+    document.getElementById('mji').src = img;
+  }  
+});
+}
+
+window.onload=canvasFun;
+</script>
+<% } else { %>
+
+<script>
+var idi = document.getElementById('mjid').innerHTML;
+var size = document.getElementById('mjiSize').innerHTML;
+var canvasSize = document.getElementById('canvasSize').innerHTML;
+function canvasFun() {
+  getJSON(jsonPath).then(function(data) {
+    var nbPerson = data[idi];
+
+  var canvas = document.getElementById('c1');
+  if (canvas.getContext)
+  {    
+    var ctx = canvas.getContext('2d'); 
+    ctx.font = size+"pt Calibri,Geneva,Arial";
+    ctx.strokeStyle = "rgb(0,0,0)";
+    ctx.fillStyle = "rgb(0,20,180)";
+    ctx.textAlign = 'center'; 
+    ctx.textBaseline = 'middle'; 
+
+    ctx.fillText(nbPerson.face, canvasSize/2, canvasSize/2);
+    var img = canvas.toDataURL("image/png");
+    document.getElementById('mji').src = img;
+  }  
+});
+}
+
+window.onload=canvasFun;
+</script>
+<% } %>
+
+<!-- Image -->
+<img src id="mji" alt="">

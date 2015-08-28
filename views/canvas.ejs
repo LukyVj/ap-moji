@@ -1,0 +1,45 @@
+<% include partials/canvas-core %>
+<script>
+var getJSON = function(url) {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+        resolve(xhr.response);
+      } else {
+        reject(status);
+      }
+    };
+    xhr.send();
+  });
+};
+var jsonPath = '../../../data/api.json';
+
+var idi = document.getElementById('mjid').innerHTML;
+function canvasFun() {
+  getJSON(jsonPath).then(function(data) {
+    var nbPerson = data[idi];
+
+  var canvas = document.getElementById('c1');
+  if (canvas.getContext)
+  {    
+    var ctx = canvas.getContext('2d'); 
+    ctx.font = "30pt Helvetica Neue,Helvetica, Arial, sans-serif";
+    ctx.fillText(nbPerson.face, 10, 60);
+    ctx.font = "20pt Helvetica Neue,Helvetica, Arial, sans-serif";
+    ctx.fillText(nbPerson.name, 10, 120);
+    ctx.font = "14pt Helvetica Neue,Helvetica, Arial, sans-serif";
+    ctx.fillText(nbPerson.job_title, 10, 150);
+    var img = canvas.toDataURL("image/png");
+    document.getElementById('mji').src = img;
+  }  
+});
+}
+
+window.onload=canvasFun;
+</script>
+
+<img src id="mji" alt="">
